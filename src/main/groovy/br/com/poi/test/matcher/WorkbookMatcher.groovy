@@ -7,8 +7,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-import br.com.poi.Coordenada
-
 class WorkbookMatcher extends TypeSafeDiagnosingMatcher<Workbook> {
 
 	private Coordenada coordenada;
@@ -22,7 +20,7 @@ class WorkbookMatcher extends TypeSafeDiagnosingMatcher<Workbook> {
 	}
 
 	def garantaQueOMatcherEstaEmUmEstadoIntegro(){
-		if (coordenada == null) {
+		if (!coordenada) {
 			throw new IllegalStateException('''
 			Matcher não finalizado corretamente. Você não informou a célula.
 			Exemplo de chamada válida:				
@@ -48,7 +46,7 @@ class WorkbookMatcher extends TypeSafeDiagnosingMatcher<Workbook> {
 		}
 		Sheet sheet = workbook.getSheetAt(sheetIndice);
 		Cell cell = getCellDaCoordenada(sheet);
-		if (cell != null) {
+		if (cell) {
 			boolean matches = cellMatcher.matches(cell);
 			cellMatcher.descreverNaoMatch(mismatchDescription)
 			return matches;
@@ -60,7 +58,7 @@ class WorkbookMatcher extends TypeSafeDiagnosingMatcher<Workbook> {
 	private Cell getCellDaCoordenada(Sheet sheet) {
 		Row row = sheet.getRow(coordenada.getLinha());
 		Cell cell = null;
-		if (row != null) {
+		if (row) {
 			cell = row.getCell(coordenada.getColuna());
 		}
 		return cell;

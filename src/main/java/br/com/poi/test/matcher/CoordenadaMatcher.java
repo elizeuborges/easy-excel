@@ -4,8 +4,6 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-import br.com.poi.Coordenada;
-
 public class CoordenadaMatcher extends TypeSafeDiagnosingMatcher<Coordenada> {
 	
 	private int coluna;

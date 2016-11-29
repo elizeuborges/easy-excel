@@ -1,7 +1,5 @@
 package br.com.poi.test.matcher;
 
-import br.com.poi.Coordenada;
-
 public class ResolvedorDeCoordenada {
 
 	public static Coordenada resolver(String celula) {

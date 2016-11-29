@@ -4,8 +4,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import br.com.poi.Coordenada;
-
 class RelatorioExcel implements Relatorio {
 
 	private Workbook workbook;
@@ -18,7 +16,7 @@ class RelatorioExcel implements Relatorio {
 	}
 
 	public void adicionar(Secao tabela) {
-		tabela.autoEscrever(sheet, new Coordenada(0, 0));
+		tabela.autoEscrever(sheet, 0, 0);
 	}
 	
 	public Workbook getWorkbook() {
