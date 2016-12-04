@@ -1,8 +1,9 @@
 package br.com.eu.easyexcel;
 
-import static br.com.poi.test.matcher.WorkbookMatcher.possuiTexto;
+import static org.apache.poi.matchers.WorkbookMatcher.estaCom;
 import static org.junit.Assert.assertThat;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class TabelaTest {
@@ -20,23 +20,42 @@ public class TabelaTest {
 
 	private Sheet sheet;
 
+	private RowMapper<Pessoa> rowMapper;
+
 	@Before
 	public void setUp() throws Exception {
 		workbook = new XSSFWorkbook();
 		sheet = workbook.createSheet();
-	}
-
-	@Ignore
-	@Test
-	public void deveAdicionarCabecalho() throws IOException {
-		RowMapper<Pessoa> rowMapper = new RowMapper<Pessoa>() {
+		
+		rowMapper = new RowMapper<Pessoa>() {
 			@Override
 			public void mapearLinha(Linha linha, Pessoa pessoa) {
 				linha.setarNaColuna("Nome", pessoa.getNome());
 				linha.setarNaColuna("Endereço", pessoa.getEndereco());
 			}
 		};
+	
+	}
 
+	@Test
+	public void deveAdicionarValoresConformeCabecalhos() throws Exception {
+		List<Pessoa> pessoas = new ArrayList<Pessoa>();
+		pessoas.add(new Pessoa("Joao", "Rua 1"));
+		pessoas.add(new Pessoa("Ana", "Rua 2"));
+		Tabela<Pessoa> tabela = new Tabela<Pessoa>(rowMapper, pessoas);
+		tabela.addCabecalho("Nome");
+		tabela.addCabecalho("Endereço");
+		tabela.autoEscrever(sheet, 0, 0);
+		assertThat(workbook, estaCom("Joao").naCelula("A2"));
+		assertThat(workbook, estaCom("Rua 1").naCelula("B2"));
+		assertThat(workbook, estaCom("Ana").naCelula("A3"));
+		assertThat(workbook, estaCom("Rua 2").naCelula("B3"));
+		
+		workbook.write(new FileOutputStream("C:\\Users\\Elizeu\\Desktop\\pessoas.xlsx"));
+	}
+	
+	@Test
+	public void deveAdicionarCabecalho() throws IOException {
 		List<Pessoa> pessoas = new ArrayList<Pessoa>();
 		pessoas.add(new Pessoa("Joao", "Rua 1"));
 		pessoas.add(new Pessoa("Ana", "Rua 2"));
@@ -46,15 +65,12 @@ public class TabelaTest {
 		tabela.addCabecalho("Endereço");
 		tabela.autoEscrever(sheet, 0, 0);
 		
-		assertThat(workbook, possuiTexto("Nome").naCelula("A1"));
-		assertThat(workbook, possuiTexto("Endereço").naCelula("B1"));
-		assertThat(workbook, possuiTexto("Joao").naCelula("A2"));
-		assertThat(workbook, possuiTexto("Rua 1").naCelula("B2"));
-		assertThat(workbook, possuiTexto("Ana").naCelula("A3"));
-		assertThat(workbook, possuiTexto("Rua 2").naCelula("B3"));
+		assertThat(workbook, estaCom("Nome").naCelula("A1"));
+		assertThat(workbook, estaCom("Endereço").naCelula("B1"));
 	}
 
 	public static class Pessoa {
+		
 		private String nome;
 		private String endereco;
 

@@ -15,8 +15,8 @@ class RelatorioExcel implements Relatorio {
 		sheet = workbook.createSheet();
 	}
 
-	public void adicionar(Secao tabela) {
-		tabela.autoEscrever(sheet, 0, 0);
+	public void adicionar(Secao sessao) {
+		sessao.autoEscrever(sheet, 0, 0);
 	}
 	
 	public Workbook getWorkbook() {
