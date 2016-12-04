@@ -1,7 +1,7 @@
 package br.com.eu.easyexcel;
 
-import static org.apache.poi.matchers.WorkbookMatcher.estaCom;
 import static org.junit.Assert.assertThat;
+import static org.poimatchers.WorkbookMatcher.estaCom;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
