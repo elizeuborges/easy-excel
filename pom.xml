@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>br.com.eu</groupId>
+	<groupId>com.github.elizeuborges</groupId>
 	<artifactId>easy-excel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>easy-excel</name>
@@ -63,13 +63,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.poi</groupId>
+			<groupId>com.github.elizeuborges</groupId>
 			<artifactId>poi-matchers</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<scope>system</scope>
-    		<systemPath>${project.basedir}/src/main/resources/poi-matchers-0.0.1-SNAPSHOT.jar</systemPath>
+			<version>1.0.0-beta</version>
+			<scope>test</scope>
 		</dependency>
-
+		
 		<!-- Testes -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -96,7 +95,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 
 	</dependencies>
 
@@ -174,7 +173,7 @@
 					</dependencySourceIncludes>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 	</build>
 </project>

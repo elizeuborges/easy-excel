@@ -1,4 +1,4 @@
-package br.com.eu.easyexcel;
+package com.github.elizeuborges.easyexcel;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
@@ -14,6 +14,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import com.github.elizeuborges.easyexcel.RelatorioExcel;
+import com.github.elizeuborges.easyexcel.Secao;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RelatorioExcelTest {

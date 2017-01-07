@@ -1,7 +1,7 @@
-package br.com.eu.easyexcel;
+package com.github.elizeuborges.easyexcel;
 
 import static org.junit.Assert.assertThat;
-import static org.poimatchers.WorkbookMatcher.estaCom;
+import static com.github.elizeuborges.poimatchers.WorkbookMatcher.estaCom;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +13,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.github.elizeuborges.easyexcel.Linha;
+import com.github.elizeuborges.easyexcel.RowMapper;
+import com.github.elizeuborges.easyexcel.Tabela;
 
 public class TabelaTest {
 

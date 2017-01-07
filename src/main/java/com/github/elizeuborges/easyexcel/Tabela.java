@@ -1,4 +1,4 @@
-package br.com.eu.easyexcel;
+package com.github.elizeuborges.easyexcel;
 
 import java.util.LinkedList;
 import java.util.List;

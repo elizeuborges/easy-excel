@@ -1,4 +1,4 @@
-package br.com.eu.easyexcel;
+package com.github.elizeuborges.easyexcel;
 
 import org.apache.poi.ss.usermodel.Sheet;
 
